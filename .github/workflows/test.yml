@@ -27,15 +27,15 @@ jobs:
             name: java-coverage-report
             path: ./back/target/site/jacoco/index.html
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 16
 
       - run: npm install
         working-directory: ./front
 
       - name: Run Angular tests
-        run: npm run test -- --code-coverage
+        run: npm install && npm test -- --watch=false --code-coverage --browsers=ChromeHeadlessCI
         working-directory: ./front
 
       - name: Upload Angular Coverage Report
