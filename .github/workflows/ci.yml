@@ -1,6 +1,6 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 
-name: Angular Build & test
+name: Angular & Java tests
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: angular-coverage-report
           path: front/coverage/
 
       - name: Build
