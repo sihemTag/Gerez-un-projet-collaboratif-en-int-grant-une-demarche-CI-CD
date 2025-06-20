@@ -19,6 +19,23 @@ jobs:
       - name: Checkout the source code
         uses: actions/checkout@v3
 
+      # Backend tests
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 11
+
+      - name: Run Java tests
+        run: mvn clean verify
+        working-directory: back
+
+      - name: Upload Java Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+            name: java-coverage-report
+            path: back/target/site/jacoco/
+
+      # Frontend tests
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
