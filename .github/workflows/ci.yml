@@ -34,6 +34,12 @@ jobs:
         run: npm run test:ci
         working-directory: front
 
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: front/coverage/
+
       - name: Build
         run: npm run build
         working-directory: front
