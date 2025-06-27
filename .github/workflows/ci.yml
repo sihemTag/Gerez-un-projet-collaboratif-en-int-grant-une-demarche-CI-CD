@@ -76,8 +76,9 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build and analyze
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sihemTag_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
-        working-directory: back
+      - name: Install SonarScanner
+        run: npm install -g sonar-scanner
+
+      - name: Run SonarCloud Analysis
+        run: sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
